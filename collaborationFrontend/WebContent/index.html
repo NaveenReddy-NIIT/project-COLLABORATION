@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>project</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-cookies.js"></script>
+
+<script src="RouteConfig.js"></script>
+<script src="c_user/UserController.js"></script>
+<script src="c_chat/ChatController.js"></script>
+  <script src="c_chat/ChatService.js"></script>
+  
+<script src="c_blog/BlogController.js"></script>
+<script src="c_blog/BlogCommentController.js"></script>
+
+<script src="c_forum/ForumController.js"></script>
+<script src="c_forum/ForumCommentController.js"></script>
+
+<script src="c_friend/FriendController.js"></script>
+
+<script src="c_job/JobController.js"></script>
+<script src="c_job/ApplyJobController.js"></script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.1/sockjs.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
+
+
+
+<link rel="stylesheet" href="login.css">
+<link rel="stylesheet" href="Register.css">
+
+<style>
+#hom { color:white; }
+#link a:hover { color:black; background-color:white; }
+
+</style>
+</head>
+
+<body background="images/mybg.jpg" ng-app="myApp">
+ <div ng-controller="UserController">
+ 
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+  <div class="container-fluid" id="link">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#" id="hom">COLLABORATION</a>
+    </div>
+ 
+ <ul class="nav navbar-nav">  
+ <li class="active" ng-show="currentUser==undefined"><a href="#/userhome"  id="hom">HOME</a></li>
+  <li ng-show="currentUser==undefined"><a href="#/login" id="hom">LOGIN</a></li>
+  <li ng-show="currentUser==undefined"><a href="#/register" id="hom">REGISTER</a></li>
+  <li ng-show="currentUser==undefined"><a href="#/contactus" id="hom">CONTACT US</a></li>
+  <li ng-show="currentUser==undefined"><a href="#/aboutus" id="hom">ABOUT US</a></li>
+  <li ng-hide="currentUser==undefined"><a href="#/profile" id="hom">PROFILE</a></li>
+  <li ng-hide="currentUser==undefined"><a href="#/chat" id="hom">CHAT</a></li>
+  
+  
+  <li class="dropdown">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="hom">BLOG<span class="caret"></span></a>
+  <ul class="dropdown-menu">
+    <li><a class="nav-link" href="#/addBlog" ng-show="currentUser.role=='ROLE_USER'">ADD BLOG</a>
+    <li><a class="nav-link" href="#/myBlog" ng-show="currentUser.role=='ROLE_USER'">MY BLOGs</a>
+    <li><a class="nav-link" href="#/manageBlog" ng-show="currentUser.role=='ROLE_ADMIN'">MANAGE BLOG</a>
+    <li><a class="nav-link" href="#/showBlog">SHOW ALL BLOGS</a></li>
+  </ul>
+ </li>
+ 
+ 
+   <li class="dropdown">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="hom">FORUM<span class="caret"></span></a>
+  <ul class="dropdown-menu">
+    <li><a class="nav-link" href="#/addForum" ng-show="currentUser.role=='ROLE_USER'">ADD FORUM</a>
+    <li><a class="nav-link" href="#/myForum" ng-show="currentUser.role=='ROLE_USER'">MY FORUMs</a>
+    <li><a class="nav-link" href="#/manageForum" ng-show="currentUser.role=='ROLE_ADMIN'">MANAGE FORUM</a>
+    <li><a class="nav-link" href="#/showForum">SHOW ALL FORUMS</a></li>
+  </ul>
+ </li>
+ 
+  <li class="dropdown" ng-hide="currentUser==undefined">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="hom">FRIEND<span class="caret"></span></a>
+  <ul class="dropdown-menu">
+    <li><a class="nav-link" href="#/showFriends" >SHOW FRIENDS</a>
+    <li><a class="nav-link" href="#/friendRequests" >FRIEND REQUESTS</a>
+    <li><a class="nav-link" href="#/suggestedFriends">SUGGESTED FRIENDS</a>
+  </ul>
+ </li>
+ 
+ 
+   <li class="dropdown">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="hom">JOB<span class="caret"></span></a>
+  <ul class="dropdown-menu">
+    <li><a class="nav-link" href="#/addJob" ng-show="currentUser.role=='ROLE_ADMIN'">ADD JOB</a>
+    <li><a class="nav-link" href="#/showJob">SHOW ALL JOBs</a></li>
+  </ul>
+ </li>
+ 
+ 
+ <li class="active" ng-hide="currentUser==undefined">
+   <img src="http://localhost:8009/collaborationMiddleware/getImage/{{currentUser.username}}" width="70px" height="60px">
+    <h4 style="right:10px">Welcome {{currentUser.firstname}}</h4>
+    <a href="" ng-click="logout()" id="hom">LOG OUT</a>
+ </li>
+ </ul>   
+ </div>
+ </nav>
+ </div>
+ 
+<div ng-view></div>
+</body>
+</html> 
+ 
+ 
+ 
+ 

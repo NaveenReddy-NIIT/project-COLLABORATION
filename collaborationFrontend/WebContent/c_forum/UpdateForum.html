@@ -1,0 +1,9 @@
+<div ng-controller="ForumController">
+<h2>Update forum page</h2>
+<form>
+ForumId:<input type="text" ng-model="forum.forumId" value="{{forum.forumId}}" readonly><br>
+ForumName:<input type="text" ng-model="forum.forumName" value="{{forum.forumName}}"><br>
+ForumContent:<textarea ng-model="forum.forumContent" value="{{forum.forumContent}}" cols="30" rows="10"></textarea><br>
+<button ng-click="updateForum()">Update</button>
+</form>
+</div>

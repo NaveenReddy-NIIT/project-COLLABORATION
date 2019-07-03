@@ -1,0 +1,34 @@
+<div ng-controller="JobController">
+<div class="container">
+<h3>JOBS</h3>            
+  <table class="table table-hover">
+    <thead>
+      <tr>
+       <td><b>JOB DESIGNATION</b></td>
+       <td><b>COMPANY NAME</b></td>
+       <td><b>CTC</b></td>
+       <td><b>JOB LOCATION</b></td>
+       <td><b>LAST DATE TO APPPLY</b></td>
+       <td><b>SKILLS REQUIRED</b></td>
+       <td></td>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <tr ng-repeat="job in jobdata">
+        <td>{{job.jobDesignation}}</td></br>
+        <td>{{job.companyName}}</td>
+        <td>{{job.ctc}}</td>
+        <td>{{job.jobLocation}}</td>
+        <td>{{job.lastDate}}</td>
+        <td>{{job.skills}}</td>
+       <td><button ng-show="currentUser.role=='ROLE_ADMIN'" ng-click="deleteJob(job.jobId)">Delete</button> 
+           <button ng-show="currentUser.role=='ROLE_USER'" ng-click="addApplyJob(job.jobId)">Apply</button> 
+       </td>       
+     </tr>
+    </tbody>
+    </table>
+
+</div>  
+</div>
+
